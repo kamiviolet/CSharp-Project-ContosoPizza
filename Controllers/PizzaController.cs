@@ -48,7 +48,7 @@ public class PizzaController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
         var existingPizza = PizzaService.Get(id);
