@@ -34,7 +34,6 @@ public class PizzaController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = pizza.Id }, pizza);
     }
 
-    // PUT action
     [HttpPut("{id}")]
     public IActionResult Update(int id, Pizza pizza)
     {
@@ -49,5 +48,15 @@ public class PizzaController : ControllerBase
         return NoContent();
     }
 
-    // DELETE action
+    [HttpDelete]
+    public IActionResult Delete(int id)
+    {
+        var existingPizza = PizzaService.Get(id);
+        if (existingPizza is null)
+            return NotFound();
+
+        PizzaService.Delete(id);
+
+        return NoContent();
+    }
 }
